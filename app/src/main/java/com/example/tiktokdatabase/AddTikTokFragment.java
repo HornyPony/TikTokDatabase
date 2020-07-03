@@ -4,10 +4,13 @@ package com.example.tiktokdatabase;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.room.Room;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -46,6 +49,7 @@ public class AddTikTokFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_add_tik_tok, container, false);
+        setHasOptionsMenu(true);
         Bundle bundle = this.getArguments();
         tikTokDatabase = Room.databaseBuilder(getActivity(), TikTokDatabase.class, "usefulVideos")
                 .allowMainThreadQueries().build();
@@ -96,4 +100,9 @@ public class AddTikTokFragment extends Fragment {
 
     }
 
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+
+        super.onCreateOptionsMenu(menu, inflater);
+    }
 }
