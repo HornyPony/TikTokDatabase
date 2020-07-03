@@ -1,5 +1,6 @@
 package com.example.tiktokdatabase;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,12 +10,15 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.MyViewHolder> {
 
-
+    private Context context;
     private List<Video> videos;
+    private MainActivity mainActivity;
+
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -32,9 +36,11 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.MyViewHold
     }
 
 
-    public VideosAdapter(List<Video> videos) {
+    public VideosAdapter(Context context, List<Video> videos, MainActivity mainActivity) {
 
+        this.context = context;
         this.videos = videos;
+        this.mainActivity = mainActivity;
 
     }
 
@@ -63,7 +69,7 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.MyViewHold
             @Override
             public void onClick(View v) {
 
-                //mainActivity.addAndEditVideos(true, video, position);
+                mainActivity.addAndEditVideos(true, video, position);
             }
         });
 
