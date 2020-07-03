@@ -2,10 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/delete_tiktok"
-        android:title="Delete TikTok "
-        android:icon="@drawable/ic_delete_white_24dp"
-        app:showAsAction="never"
+        android:id="@+id/save_tiktok"
+        android:title="Save TikTok "
+        android:icon="@drawable/ic_save_white_24dp"
+        app:showAsAction="always"
         />
 
 <item

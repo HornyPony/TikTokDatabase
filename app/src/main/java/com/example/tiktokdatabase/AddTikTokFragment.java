@@ -5,12 +5,14 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.NavUtils;
 import androidx.fragment.app.Fragment;
 import androidx.room.Room;
 
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -102,7 +104,25 @@ public class AddTikTokFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-
         super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.edit_tiktok_menu, menu);
     }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.save_tiktok:
+                return true;
+            case  R.id.delete_tiktok:
+                return true;
+            case android.R.id.home:
+                getFragmentManager().popBackStack();
+                return  true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
 }

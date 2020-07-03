@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-               addAndEditVideos(false, null, -1);
+                addAndEditVideos(false, null, -1);
 
             }
         });
@@ -53,14 +53,16 @@ public class MainActivity extends AppCompatActivity {
             bundle.putBoolean("isUpdate", isUpdate);
             bundle.putInt("position", position);
             addTikTokFragment.setArguments(bundle);
-            fragmentManager.beginTransaction().replace(R.id.container, addTikTokFragment).commit();
+            fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.container, addTikTokFragment).commit();
         } else {
             FragmentManager fragmentManager = getSupportFragmentManager();
             AddTikTokFragment addTikTokFragment = new AddTikTokFragment();
-            fragmentManager.beginTransaction().replace(R.id.container, addTikTokFragment).commit();
-        }
+            fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.container, addTikTokFragment).commit();
         }
     }
+
+
+}
 
 
 
