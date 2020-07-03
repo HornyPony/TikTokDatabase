@@ -19,7 +19,10 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.MyViewHold
     private List<Video> videos;
     private MainActivity mainActivity;
 
+    public VideosAdapter(List<Video> videos) {
+        this.videos = videos;
 
+    }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public ImageView tikTokImageView;

@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
             AddTikTokFragment addTikTokFragment = new AddTikTokFragment();
             Bundle bundle = new Bundle();
             bundle.putBoolean("isUpdate", isUpdate);
+            bundle.putInt("position", position);
             addTikTokFragment.setArguments(bundle);
             fragmentManager.beginTransaction().replace(R.id.container, addTikTokFragment).commit();
         } else {
