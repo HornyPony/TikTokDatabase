@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         TikTokDatabase tikTokDatabase = Room.databaseBuilder(getApplicationContext(), TikTokDatabase.class, "usefulVideos")
-                .allowMainThreadQueries().build();
+                .allowMainThreadQueries().build(); //база данных, allowMainThreadQuerries временно, потом AsyncTask сделаю
         List<Video> videos = tikTokDatabase.getTikTokDAO().getAllVideos();
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -36,13 +36,14 @@ public class MainActivity extends AppCompatActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+// запуск метода для добавления или редактирования элемента (зависит от параметров)
                 addAndEditVideos(false, null, -1);
 
             }
         });
     }
 
+    //Добавление или редактирование видео. Если isUpdate == true, то происходит обновление, если false то, добавление
     public void addAndEditVideos(final boolean isUpdate, final Video video, final int position) {
         recyclerView.setVisibility(View.GONE);
         floatingActionButton.setVisibility(View.GONE);

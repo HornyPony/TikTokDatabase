@@ -54,7 +54,7 @@ public class AddTikTokFragment extends Fragment {
         setHasOptionsMenu(true);
         Bundle bundle = this.getArguments();
         tikTokDatabase = Room.databaseBuilder(getActivity(), TikTokDatabase.class, "usefulVideos")
-                .allowMainThreadQueries().build();
+                .allowMainThreadQueries().build(); //база данных, allowMainThreadQuerries временно, потом AsyncTask сделаю
         videosAdapter = new VideosAdapter(videos);
         videos = tikTokDatabase.getTikTokDAO().getAllVideos();
         descriptionEditText = view.findViewById(R.id.descriptionEditText);
@@ -62,6 +62,8 @@ public class AddTikTokFragment extends Fragment {
         addPhotoButton = view.findViewById(R.id.addPhotoButton);
         saveTikTokButton = view.findViewById(R.id.saveTikTokButton);
         newVideoTitle = view.findViewById(R.id.newVideoTitle);
+        //получение из MainActivity данных о позиции айтема(для обновления элемента) и определение, происходит
+        //обновление элемента или новый элемент добавляется
         if (bundle != null) {
             isUpdate = getArguments().getBoolean("isUpdate");
             position = getArguments().getInt("position");
@@ -77,10 +79,12 @@ public class AddTikTokFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(isUpdate == false) {
+                    //добавление нового элемента
                     tikTokDatabase.getTikTokDAO().addTikTok(new Video(0, descriptionEditText.getText().toString(), urlEditText.getText().toString()));
                 } else {
                     updateVideo(descriptionEditText.getText().toString(), urlEditText.getText().toString(), position);
                 }
+                //возвращение в MainActivity
                 startActivity(new Intent(getActivity(), MainActivity.class));
 
             }
@@ -88,6 +92,7 @@ public class AddTikTokFragment extends Fragment {
         return view;
     }
 
+    //метод для обновления элемента
     private void updateVideo(String description, String url, int position) {
         Video video = videos.get(position);
 
@@ -108,6 +113,7 @@ public class AddTikTokFragment extends Fragment {
         inflater.inflate(R.menu.edit_tiktok_menu, menu);
     }
 
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
@@ -116,6 +122,7 @@ public class AddTikTokFragment extends Fragment {
                 return true;
             case  R.id.delete_tiktok:
                 return true;
+                //TODO: При нажатии на кнопку назад, должно происходить возращение в MainActivity
             case android.R.id.home:
                 getFragmentManager().popBackStack();
                 return  true;
